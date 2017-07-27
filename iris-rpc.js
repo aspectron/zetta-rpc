@@ -493,6 +493,9 @@ function Interface(options) {
 
         if(err.code != 'ECONNREFUSED')
             self.emitToListeners('disconnect', stream.uuid, stream);
+        else 
+            self.emitToListeners('connection-refused', stream.uuid, stream);
+
         pendingCleanup(stream);
         // console.log(("RPC DISCONNECTING STREAM "+stream.uuid).green.bold);
         delete self.streams[stream.uuid];
